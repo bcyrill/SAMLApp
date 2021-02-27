@@ -1,0 +1,10 @@
+FROM php:8-apache
+
+RUN a2enmod rewrite
+
+RUN sed -i 's!/var/www/html!/var/www/public!g' /etc/apache2/sites-available/000-default.conf \
+ && mv /var/www/html /var/www/public
+
+COPY php.ini-dev "$PHP_INI_DIR/php.ini"
+
+WORKDIR /var/www

@@ -1,0 +1,17 @@
+version: "3.3"
+
+networks:
+  web:
+    external: true
+
+services:
+  saml:
+    build: .
+    restart: unless-stopped
+    labels:
+      - traefik.http.routers.saml.rule=Host(`saml.burpisnotbeef.ovh`)
+      - traefik.http.routers.saml.tls=true
+      - traefik.http.routers.saml.tls.certresolver=lets-encrypt
+      - traefik.port=80
+    networks:
+      - web
