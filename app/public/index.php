@@ -9,6 +9,9 @@ $requestMethod = $_SERVER["REQUEST_METHOD"];
 $settings = array();
 include("/var/www/config/settings.php");
 
+// Use $_SERVER["HTTP_X_FORWARDED_PORT"] & $_SERVER['HTTP_X_FORWARDED_PROTO']
+\OneLogin\Saml2\Utils::setProxyVars(true);
+
 switch ($uri[1]) {
     case 'sso':
 
